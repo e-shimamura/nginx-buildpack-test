@@ -39,22 +39,22 @@ if [[ ! -d ${root_dir} ]] ; then
   error "the application Staticfile specifies a root directory \`${root_dir}\` that is a plain file, but was expected to be a directory"
 fi
 
-status "Copying project files into public/"
-mkdir -p $cache_dir/public
-rsync -a \
-      --exclude='/Staticfile' \
-      --exclude='/Staticfile.auth' \
-      --exclude='/manifest.yml' \
-      --exclude='/stackato.yml' \
-      $root_dir/ $build_dir/public
+#status "Copying project files into public/"
+#mkdir -p $cache_dir/public
+#rsync -a \
+#      --exclude='/Staticfile' \
+#      --exclude='/Staticfile.auth' \
+#      --exclude='/manifest.yml' \
+#      --exclude='/stackato.yml' \
+#      $root_dir/ $build_dir/public
 
 status "Setting up nginx"
 tar xzf $compile_nginx_tgz
 cp -f $compile_buildpack_dir/conf/nginx.conf nginx/conf/nginx.conf
 cp -f $compile_buildpack_dir/conf/mime.types nginx/conf/mime.types
 
-[[ -f $build_dir/public/nginx.conf ]] && mv $build_dir/public/nginx.conf nginx/conf/nginx.conf
-[[ -f $build_dir/public/mime.types ]] && mv $build_dir/public/mime.types nginx/conf/mime.types
+#[[ -f $build_dir/public/nginx.conf ]] && mv $build_dir/public/nginx.conf nginx/conf/nginx.conf
+#[[ -f $build_dir/public/mime.types ]] && mv $build_dir/public/mime.types nginx/conf/mime.types
 
 if [[ -f Staticfile.auth ]]; then
   status "Enabling basic authentication"
